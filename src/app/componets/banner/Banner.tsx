@@ -80,7 +80,7 @@ const Banner = () => {
           height={500}
           width={500}
           alt="dipu img"
-          className="bottom-0"
+          className="bottom-0 w-1/2 mx-auto lg:w-full"
         />
       </div>
     </div>

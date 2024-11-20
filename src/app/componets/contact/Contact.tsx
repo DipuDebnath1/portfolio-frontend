@@ -45,14 +45,14 @@ const Contact = () => {
   };
 
   return (
-    <div id="contact" className="w-full py-16 px-8 ">
+    <div id="contact" className="w-full py-16 ">
       <SectionTitle title="Contact" bgText="Get in Touch" />
 
-      <div className="flex justify-between flex-col gap-10 pt-10 lg:flex-row items-center">
+      <div className="flex justify-between flex-col gap-10 pt-10 lg:flex-row items-center pl-0 lg:pl-5">
         {/* social Link  */}
         <div className="lg:w-1/2 space-y-5">
-          <div className="flex gap-10 items-center border rounded">
-            <div className="bg-gray-100 p-10 rounded">
+          <div className="flex gap-5 lg:gap-10 items-center border rounded">
+            <div className="bg-gray-100 p-7 lg:p-10 rounded">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -68,30 +68,33 @@ const Contact = () => {
                 />
               </svg>
             </div>
-            <p>dipudebnath966@gmail.com</p>
+            <p className="pr-5">dipudebnath966@gmail.com</p>
           </div>
-          <div className="flex gap-10 items-center border rounded">
-            <div className="bg-gray-100 p-10 rounded">
+          <div className="flex gap-5 lg:gap-10 items-center border rounded">
+            <div className="bg-gray-100 p-7 lg:p-10 rounded">
               {" "}
               <WhatsAppIcon />
             </div>
 
-            <p>+8801773524570</p>
+            <p className="pr-5">+8801773524570</p>
           </div>
-          <div className="flex gap-10 items-center border rounded">
-            <a href="https://www.linkedin.com/in/dipudebnath/" target="_blank">
+          <div className="flex gap-5 lg:gap-10 items-center border rounded">
+            <a
+              href="https://www.linkedin.c p-7olg:m/in/dipudebnath/"
+              target="_blank"
+            >
               <div className="bg-gray-100 p-10 rounded">
                 <LinkedinIcon />
               </div>
             </a>{" "}
             <a href="https://www.linkedin.com/in/dipudebnath/" target="_blank">
-              <p>LinkedIn</p>
+              <p className="pr-5">LinkedIn</p>
             </a>
           </div>
         </div>
 
         {/* Contact Form */}
-        <div className="lg:w-1/2 w-full">
+        <div className="lg:w-1/2 w-full px-5">
           <form
             onSubmit={handleSubmit}
             className=" bg-white rounded-lg  text-start lg:flex-1"

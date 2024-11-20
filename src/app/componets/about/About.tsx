@@ -23,7 +23,7 @@ const AboutMe = () => {
         {/* Right Section - Content */}
         <div className="flex flex-col gap-5 text-gray-800">
           <SectionTitle title="About Me" bgText="Who Am I ?" />
-          <div>
+          <div className="flex flex-col gap-5">
             <p className="text-lg leading-relaxed">
               Hi! I am <span className="font-semibold">Dipu Debnath</span>, a
               passionate and dedicated web developer with a strong focus on

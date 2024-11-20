@@ -6,11 +6,11 @@ const SectionTitle = ({
   bgText?: string;
 }) => {
   return (
-    <div className="flex items-center justify-center text-center relative pb-[1rem] h-auto">
+    <div className="flex items-center justify-center text-center relative pb-[3rem] h-auto">
       {bgText && (
         <p
-          className="text-6xl lg:text-8xl font-bold opacity-[0.05] absolute w-full text-center "
-          style={{ letterSpacing: "4px" }}
+          className="text-5xl lg:text-8xl font-bold opacity-[0.05] absolute w-full text-center"
+          style={{ letterSpacing: "4px", textTransform: "uppercase" }}
         >
           {bgText}
         </p>

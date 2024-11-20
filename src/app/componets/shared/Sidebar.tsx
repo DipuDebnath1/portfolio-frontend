@@ -2,48 +2,12 @@
 import Image from "next/image";
 import GithubIcon from "../icons/GithubIcon";
 import LinkedinIcon from "../icons/LinkedinIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { navItem } from "@/app/constData/navItem";
 
 const Sidebar = () => {
-  const navItem = [
-    {
-      name: "Home",
-      url: "/",
-      id: "home",
-    },
-    {
-      name: "Projects",
-      url: "/projects",
-      id: "projects",
-    },
-    {
-      name: "Blogs",
-      url: "/blogs",
-      id: "blogs",
-    },
-    {
-      name: "About",
-      url: "/about",
-      id: "about",
-    },
-    {
-      name: "Skills",
-      url: "/skills",
-      id: "skills",
-    },
-    {
-      name: "Education",
-      url: "/education",
-      id: "education",
-    },
-    {
-      name: "Contact",
-      url: "/contact",
-      id: "contact",
-    },
-  ];
-
   const [showSidebar, setShowSidebar] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   const handleScroll = (sectionID: string) => {
     const aboutSection = document.getElementById(sectionID);
@@ -52,6 +16,39 @@ const Sidebar = () => {
     }
     setShowSidebar(false);
   };
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null, // viewport
+      rootMargin: "0px",
+      threshold: 0.2, // 60% of the section is visible
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log(entry.target.id);
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    // Observing all sections
+    navItem.forEach((item) => {
+      const section = document.getElementById(item.id);
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className={` lg:sticky top-0 lg:border-r-2 `}>
       {/* responsive open icons */}
@@ -83,7 +80,7 @@ const Sidebar = () => {
               src="https://i.ibb.co.com/T0Y7cj6/dipu-1.jpg"
               height={200}
               width={200}
-              className="w-40 object-cover mx-auto rounded-full"
+              className="w-40 object-cover mx-auto rounded-full border"
               alt="author Img"
             />
           </figure>
@@ -93,11 +90,13 @@ const Sidebar = () => {
           </div>
         </header>
         <main>
-          <ul className="space-y-5 ">
+          <ul className="space-y-5 text-center">
             {navItem.map((item, i) => (
               <li
                 onClick={() => handleScroll(item.id)}
-                className="text-lg cursor-pointer"
+                className={`text-lg cursor-pointer ${
+                  activeSection === item.id ? "text-blue-500 font-bold" : ""
+                }`}
                 key={i}
               >
                 {item.name}
@@ -109,10 +108,17 @@ const Sidebar = () => {
         <footer className="">
           <ul className="flex gap-3">
             <li>
-              <GithubIcon width={50} height={50} fill="gray" />
+              <a href="https://github.com/DipuDebnath1" target="_blank">
+                <GithubIcon width={50} height={50} fill="gray" />
+              </a>
             </li>
             <li>
-              <LinkedinIcon width={50} height={50} fill="gray" />
+              <a
+                href="https://www.linkedin.com/in/dipudebnath/"
+                target="_blank"
+              >
+                <LinkedinIcon width={50} height={50} fill="gray" />
+              </a>
             </li>
           </ul>
         </footer>
